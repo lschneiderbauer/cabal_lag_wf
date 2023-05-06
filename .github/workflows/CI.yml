@@ -46,7 +46,7 @@ jobs:
       - name: Install gPRC
         run: |
           cd grpc/cmake/build
-          make install
+          sudo make install
       
       - name: Run and time pkg-config
         run: time pkg-config --list-all | cut -f 1 -d ' ' | xargs pkg-config --modversion
