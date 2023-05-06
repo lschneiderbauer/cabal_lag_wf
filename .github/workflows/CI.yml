@@ -37,13 +37,16 @@ jobs:
           
       - name: Build gPRC
         run: |
+          cd grpc
           mkdir -p cmake/build
           cd cmake/build
-          cmake ../.. -DgRPC_INSTALL=ON
-          make -DBUILD_SHARED_LIBS=ON
+          cmake ../.. -DBUILD_SHARED_LIBS=ON -DgRPC_INSTALL=ON
+          make 
       
       - name: Install gPRC
-        run: make install
+        run: |
+          cd grpc/cmake/build
+          make install
       
       - name: Run and time pkg-config
         run: time pkg-config --list-all | cut -f 1 -d ' ' | xargs pkg-config --modversion
