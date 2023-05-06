@@ -26,8 +26,8 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Install packages
         run: |
-          apt-get update
-          apt-get install cabal-install libgrpc++-dev
+          sudo apt-get update
+          sudo apt-get install cabal-install libgrpc++-dev
         
       - name: Run and time pkg-config
         run: time pkg-config --list-all | cut -f 1 -d ' ' | xargs pkg-config --modversion
