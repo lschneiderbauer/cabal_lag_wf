@@ -23,11 +23,27 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
-      # Runs a set of commands using the runners shell
+      # libgrpc++-dev is outdated, so we are building from source
       - name: Install packages
         run: |
           sudo apt-get update
-          sudo apt-get install cabal-install libgrpc++-dev
-        
+          sudo apt-get install cabal-install build-essential autoconf libtool pkg-config cmake libc++-dev
+      
+      - name: Clone gPRC source
+        run: |
+          git clone -b v1.52.1 https://github.com/grpc/grpc
+          cd grpc
+          git submodule update --init
+          
+      - name: Build gPRC
+        run: |
+          mkdir -p cmake/build
+          cd cmake/build
+          cmake ../.. -DgRPC_INSTALL=ON
+          make -DBUILD_SHARED_LIBS=ON
+      
+      - name: Install gPRC
+        run: make install
+      
       - name: Run and time pkg-config
         run: time pkg-config --list-all | cut -f 1 -d ' ' | xargs pkg-config --modversion
