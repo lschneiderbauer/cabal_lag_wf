@@ -48,5 +48,10 @@ jobs:
           cd grpc/cmake/build
           sudo make install
       
+      - name: Move artifical .pc file
+        run: |
+          pkg-config --variable pc_path pkg-config
+          sudo cp $GITHUB_WORKSPACE/test.pc /usr/share/pkgconfig/
+      
       - name: Run and time pkg-config
         run: time pkg-config --list-all | cut -f 1 -d ' ' | xargs pkg-config --modversion
