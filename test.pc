@@ -1,0 +1,12 @@
+prefix=${pcfiledir}/../..
+exec_prefix=${prefix}/bin
+libdir=${prefix}/lib64
+includedir=${prefix}/include
+
+Name: Test
+Description: Test
+Requires:  grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++ grpc++
+Version: 
+
+Libs: -L${libdir}
+Cflags: -I${includedir}
